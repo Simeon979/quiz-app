@@ -11,7 +11,7 @@ const quiz = {
 
   validate() {
     const progress = quiz.progress;
-    const correctAnswer = quizData[progress].answer;
+    const correctAnswer = Number(quizData[progress].answer);
 
     quiz.total += 1;
     document.getElementById('answer-total').innerHTML = quiz.total;
@@ -65,7 +65,7 @@ const quiz = {
   },
 };
 
-window.onload = $.getJSON("/question", { method: "random"})
+window.onload = $.getJSON("/question", { method: "random" })
                  .done((data) => {
                    let number = 1;
                    data.forEach((each) => {
