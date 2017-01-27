@@ -20,6 +20,7 @@ def index():
 def question():
   """Return 10 random question"""
   data = []
+
   if request.args.get("method") == "random":
     with open("questions.txt") as file:
       while file.readline() != "":
