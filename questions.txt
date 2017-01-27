@@ -1,3 +1,12 @@
-'Which of the following algorithms sort a list of data by first dividing it in half?', ['bubble', 'binary', 'linear'], 1
-'What is another name for a bin sort?', ['bubble', 'merge', 'bucket'], 2
-'A merge sort works by joining two unrelated lists, them separating them once again', ['True', 'False'], 1
+
+Which of the following algorithms sort a list of data by first dividing it in half? 
+bubble, binary, linear
+1
+
+What is another name for a bin sort?
+bubble, merge, bucket
+2
+
+A merge sort works by joining two unrelated lists, then separating them once again
+True, False
+1

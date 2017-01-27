@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, jsonify, render_template, request
 
 APP = Flask(__name__)
 
@@ -15,3 +15,18 @@ if APP.config["DEBUG"]:
 def index():
   """Homepage"""
   return render_template("index.html")
+
+@APP.route("/question")
+def question():
+  """Return 10 random question"""
+  data = []
+  if request.args.get("method") == "random":
+    with open("questions.txt") as file:
+      while file.readline() != "":
+        a = {}
+        a["question"] = file.readline().strip()
+        a["option"] = file.readline().strip().split(", ")
+        a["answer"] = file.readline().strip()
+        data.append(a)
+
+  return jsonify(data)

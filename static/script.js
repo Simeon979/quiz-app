@@ -1,3 +1,5 @@
+const quizData = {};
+
 const quiz = {
   progress: 0,
   correct: 0,
@@ -63,4 +65,14 @@ const quiz = {
   },
 };
 
-window.onload = quiz.display;
+window.onload = $.getJSON("/question", { method: "random"})
+                 .done((data) => {
+                   let number = 1;
+                   data.forEach((each) => {
+                     quizData[number] = each;
+                     number += 1;
+                   });
+                   console.log(quizData);
+                   quiz.display();
+                 })
+                 .fail((error) => { console.error(error); });
