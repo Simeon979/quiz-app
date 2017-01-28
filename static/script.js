@@ -65,7 +65,7 @@ const quiz = {
   },
 };
 
-window.onload = $.getJSON("/question", { method: "random" })
+window.onload = $.getJSON('/question', { method: 'random' })
                  .done((data) => {
                    let number = 1;
                    data.forEach((each) => {
