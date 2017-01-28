@@ -7,34 +7,50 @@ const quiz = {
 
   advance() {
     this.progress += 1;
+    this.display();
   },
 
-  validate() {
+  validate(answer) {
     const progress = quiz.progress;
-    const correctAnswer = Number(quizData[progress].answer);
+    const correctAnswer = quizData[progress].answer;
 
-    quiz.total += 1;
-    document.getElementById('answer-total').innerHTML = quiz.total;
-
-    if (Number(this.value) === correctAnswer) {
-      this.setAttribute('id', 'correct');
-      quiz.correct += 1;
-      document.getElementById('answer-correct').innerHTML = quiz.correct;
+    if (Number(answer.value) === Number(correctAnswer)) {
+      this.update('correct');
+      this.switchUi.call(answer, 'correct');
     } else {
-      this.setAttribute('id', 'wrong');
-      document.querySelector(`option[value='${correctAnswer}']`).setAttribute('id', 'correct');
+      this.update('wrong');
+      this.switchUi.call(answer, 'wrong');
     }
 
-    setTimeout(() => quiz.display(), 1500);
+    setTimeout(() => this.advance(), 1500);
+  },
+
+  switchUi(switchTo) {
+    /* update total number of question answered */
+    document.getElementById('answer-total').innerHTML = quiz.total;
+
+    if (switchTo === 'correct') {
+      this.classList.add('correct');
+
+      /* update total number of correct answers */
+      document.getElementById('answer-correct').innerHTML = quiz.correct;
+    } else if (switchTo === 'wrong') {
+      this.classList.add('wrong');
+      const correctOption = document.querySelector(`option[value='${correctAnswer}']`);
+      correctOption.classList.add('correct');
+    }
+  },
+
+  update(correct) {
+    this.total += 1;
+    if (correct) this.correct += 1;
   },
 
   display() {
-    quiz.advance();
-
-    const progress = quiz.progress;
+    const progress = this.progress;
 
     if (!quizData[progress]) {
-      quiz.finalize();
+      this.finalize();
     } else {
       const questionDisplay = document.getElementById('question-text');
       questionDisplay.innerHTML = `<p>${quizData[progress].question}<\p>`;
@@ -42,15 +58,16 @@ const quiz = {
       const optionContainer = document.getElementById('options');
       optionContainer.innerHTML = '';
 
-      const options = quizData[progress].option;
+      const choices = quizData[progress].option;
+
       let value = 0;
-      options.forEach((option) => {
-        const each = document.createElement('option');
-        each.setAttribute('class', 'option');
-        each.setAttribute('value', value);
-        each.innerHTML = option;
-        each.addEventListener('click', quiz.validate.bind(each));
-        optionContainer.appendChild(each);
+      choices.forEach((choice) => {
+        const option = document.createElement('option');
+        option.setAttribute('class', 'option');
+        option.setAttribute('value', value);
+        option.innerHTML = choice;
+        option.addEventListener('click', quiz.validate(option));
+        optionContainer.appendChild(option);
         value += 1;
       });
     }
@@ -68,11 +85,11 @@ const quiz = {
 window.onload = $.getJSON('/question', { method: 'random' })
                  .done((data) => {
                    let number = 1;
-                   data.forEach((each) => {
-                     quizData[number] = each;
+                   data.foroption((option) => {
+                     quizData[number] = option;
                      number += 1;
                    });
                    console.log(quizData);
-                   quiz.display();
+                   quiz.advance();
                  })
                  .fail((error) => { console.error(error); });
