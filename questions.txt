@@ -1,4 +1,44 @@
 
+Pascal is a/an ______ programming language?
+High level, Low level, Interpreted, Assembly
+0
+
+What are the two main components of a pascal program?
+Header & Statement, Declaration & block, Declaration & Statement, Header & block
+3
+
+Which of these is a valid REAL number?
+10, .74, 1e-2, 7,200.73
+2
+
+10 x 10<sup>10</sup> is not equivalent to one of these
+1 x 10e11, 10e10, 0.1 x 10<sup>12</sup>, 1e11
+0
+
+Which of these is not a simple type data?
+Integer, Boolean, Number, Char
+2
+
+Which is a structured type data
+Register, Set, String, Symbol
+1
+
+How will you declare an identifier "radius" that will take a real number later in the program?
+LET radius = real, REAL radius, VAR radius: real, INT radius
+2
+
+Which is not an expression?
+IF iq < 0, read(radius), a := b<sup>2</sup>, a*a
+2
+
+Given i = 21, j = -5. What is i DIV j ?
+4.2, -4, -4.2, 4
+3
+
+NOT(('A' > 'Z') AND (2 <> 3)) evaluate to -----
+True, False
+0
+
 Which of the following algorithms sort a list of data by first dividing it in half? 
 bubble, binary, linear
 1
