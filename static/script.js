@@ -36,6 +36,9 @@ const quiz = {
       document.getElementById('answer-correct').innerHTML = quiz.correct;
     } else if (switchTo === 'wrong') {
       this.classList.add('wrong');
+
+      /* show the correct answer */
+      const correctAnswer = Number(quizData[quiz.progress].answer);
       const correctOption = document.querySelector(`option[value='${correctAnswer}']`);
       correctOption.classList.add('correct');
     }
@@ -66,7 +69,7 @@ const quiz = {
         option.setAttribute('class', 'option');
         option.setAttribute('value', value);
         option.innerHTML = choice;
-        option.addEventListener('click', quiz.validate(option));
+        option.addEventListener('click', quiz.validate.bind(quiz, option));
         optionContainer.appendChild(option);
         value += 1;
       });
@@ -85,7 +88,7 @@ const quiz = {
 window.onload = $.getJSON('/question', { method: 'random' })
                  .done((data) => {
                    let number = 1;
-                   data.foroption((option) => {
+                   data.forEach((option) => {
                      quizData[number] = option;
                      number += 1;
                    });
