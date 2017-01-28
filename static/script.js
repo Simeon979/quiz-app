@@ -5,8 +5,12 @@ const quiz = {
   correct: 0,
   total: 0,
 
+  /* prevent multiple answers */
+  answerable: false,
+
   advance() {
     this.progress += 1;
+    this.answerable = true;
     this.display();
   },
 
@@ -39,6 +43,9 @@ const quiz = {
   },
 
   validate(answer) {
+    if (!this.answerable) return;
+    this.answerable = false;
+
     const progress = quiz.progress;
     const correctAnswer = quizData[progress].answer;
 
