@@ -15,12 +15,14 @@
   border-bottom: solid mediumslateblue 1px;
 }
 
+/*
 .option:hover {
   background-color: lightgray;
 }
+*/
 
 .correct {
-  background-color: lightgreen;
+  background-color: springgreen;
 }
 
 .wrong {
