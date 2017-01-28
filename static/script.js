@@ -10,45 +10,7 @@ const quiz = {
     this.display();
   },
 
-  validate(answer) {
-    const progress = quiz.progress;
-    const correctAnswer = quizData[progress].answer;
-
-    if (Number(answer.value) === Number(correctAnswer)) {
-      this.update('correct');
-      this.switchUi.call(answer, 'correct');
-    } else {
-      this.update('wrong');
-      this.switchUi.call(answer, 'wrong');
-    }
-
-    setTimeout(() => this.advance(), 1500);
-  },
-
-  switchUi(switchTo) {
-    /* update total number of question answered */
-    document.getElementById('answer-total').innerHTML = quiz.total;
-
-    if (switchTo === 'correct') {
-      this.classList.add('correct');
-
-      /* update total number of correct answers */
-      document.getElementById('answer-correct').innerHTML = quiz.correct;
-    } else if (switchTo === 'wrong') {
-      this.classList.add('wrong');
-
-      /* show the correct answer */
-      const correctAnswer = Number(quizData[quiz.progress].answer);
-      const correctOption = document.querySelector(`option[value='${correctAnswer}']`);
-      correctOption.classList.add('correct');
-    }
-  },
-
-  update(correct) {
-    this.total += 1;
-    if (correct) this.correct += 1;
-  },
-
+  /* initialize next question and options */
   display() {
     const progress = this.progress;
 
@@ -73,6 +35,45 @@ const quiz = {
         optionContainer.appendChild(option);
         value += 1;
       });
+    }
+  },
+
+  validate(answer) {
+    const progress = quiz.progress;
+    const correctAnswer = quizData[progress].answer;
+
+    if (Number(answer.value) === Number(correctAnswer)) {
+      this.update('correct');
+      this.switchUi.call(answer, 'correct');
+    } else {
+      this.update('wrong');
+      this.switchUi.call(answer, 'wrong');
+    }
+
+    setTimeout(() => this.advance(), 1500);
+  },
+
+  update(correct) {
+    this.total += 1;
+    if (correct === 'correct') this.correct += 1;
+  },
+
+  switchUi(switchTo) {
+    /* update total number of question answered */
+    document.getElementById('answer-total').innerHTML = quiz.total;
+
+    if (switchTo === 'correct') {
+      this.classList.add('correct');
+
+      /* update total number of correct answers */
+      document.getElementById('answer-correct').innerHTML = quiz.correct;
+    } else if (switchTo === 'wrong') {
+      this.classList.add('wrong');
+
+      /* show the correct answer */
+      const correctAnswer = Number(quizData[quiz.progress].answer);
+      const correctOption = document.querySelector(`option[value='${correctAnswer}']`);
+      correctOption.classList.add('correct');
     }
   },
 
