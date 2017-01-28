@@ -42,6 +42,7 @@ const quiz = {
     }
   },
 
+  /* Checks answer and update view accordingly */
   validate(answer) {
     if (!this.answerable) return;
     this.answerable = false;
@@ -65,6 +66,7 @@ const quiz = {
     if (correct === 'correct') this.correct += 1;
   },
 
+  /* Update view */
   switchUi(switchTo) {
     /* update total number of question answered */
     document.getElementById('answer-total').innerHTML = quiz.total;
@@ -84,6 +86,7 @@ const quiz = {
     }
   },
 
+  /* hides question and display score */
   finalize() {
     document.getElementById('final-correct').innerHTML = quiz.correct;
     document.getElementById('final-total').innerHTML = quiz.total;
