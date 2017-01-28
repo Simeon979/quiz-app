@@ -19,11 +19,11 @@
   background-color: lightgray;
 }
 
-#correct {
+.correct {
   background-color: lightgreen;
 }
 
-#wrong {
+.wrong {
   background-color: #cc0000;
 }
 
