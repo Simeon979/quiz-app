@@ -35,18 +35,6 @@ Given i = 21, j = -5. What is i DIV j ?
 4.2, -4, -4.2, 4
 3
 
-NOT(('A' > 'Z') AND (2 <> 3)) evaluate to -----
+NOT(('A' > 'Z') AND (2 <> 3)) evaluate to ______
 True, False
 0
-
-Which of the following algorithms sort a list of data by first dividing it in half? 
-bubble, binary, linear
-1
-
-What is another name for a bin sort?
-bubble, merge, bucket
-2
-
-A merge sort works by joining two unrelated lists, then separating them once again
-True, False
-1
