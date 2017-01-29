@@ -1,3 +1,5 @@
+// TODO : use data-value for options
+
 const quizData = {};
 
 const quiz = {
@@ -96,14 +98,19 @@ const quiz = {
   },
 };
 
+function initQuizData(data) {
+  let number = 1;
+  data.forEach((option) => {
+    quizData[number] = option;
+    number += 1;
+  });
+
+  console.log(quizData);
+  quiz.advance();
+}
+
 window.onload = $.getJSON('/question', { method: 'random' })
                  .done((data) => {
-                   let number = 1;
-                   data.forEach((option) => {
-                     quizData[number] = option;
-                     number += 1;
-                   });
-                   console.log(quizData);
-                   quiz.advance();
+                   initQuizData(data);
                  })
                  .fail((error) => { console.error(error); });
